@@ -65,7 +65,8 @@ public class SecurityConfig {
                         ).permitAll()
 
                         .requestMatchers(
-                                "/api/auth/**"
+                                "/api/auth/**",
+                                "/api/health"
                         ).permitAll()
 
                         .anyRequest().authenticated()
@@ -88,15 +89,15 @@ public class SecurityConfig {
                         "http://localhost:5173"
                 );
 
-        CorsConfiguration configuration =
-                new CorsConfiguration();
-
         List<String> allowedOrigins =
                 new ArrayList<>();
 
         allowedOrigins.add(frontendUrl);
         allowedOrigins.add("http://localhost:5173");
         allowedOrigins.add("http://localhost:4173");
+
+        CorsConfiguration configuration =
+                new CorsConfiguration();
 
         configuration.setAllowedOrigins(
                 allowedOrigins
